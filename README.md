@@ -51,6 +51,12 @@ Smartphone
 
 4. Design and Interaction Requirements
 - Minimalist style.
+- Color palette:
+#7B9669
+#6C8480
+#E6E6E6
+#BAC8B1
+#404E3B
 - Support for light and dark theme (manual switch).
 - Highlighting of the active navigation item.
 - Smooth animations when switching between modules.
@@ -63,3 +69,5 @@ Smartphone
 - Carousel in “My Projects” works properly.
 - Contact form validation works as specified.
 - Website is responsive and displays correctly on all devices.
+
+Assignment 2.
