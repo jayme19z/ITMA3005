@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width = device - width, initial-scale = 1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"> </label>
+        <a href="#" class="logo">Jayme's portfolio<span>.</span></a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about-me">About me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#" class="fas fa-heart"></a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+
+    </header>
+</body>
+<section class="home" id="home">
+    <div class="content">
+        <h3>Portfolio of Zhamilya</h3>
+        <span> The very first assignment </span>
+        <p> As part of the Interactive Mobile and Web Application Development course, we need to complete Assignment 1:
+            Foundational Web Interface Development. The task is to design and implement a personal portfolio website as
+            a single-page application (SPA) using HTML5, CSS3, and vanilla JavaScript. The website should be responsive,
+            include “About Me”, “Projects”, and “Contact” sections, feature JavaScript-driven interactivity (e.g.,
+            dark/light mode toggle or form validation), and follow semantic HTML and consistent styling practices. </p>
+    </div>
+</section>
+
+<section class="about-me" id="about-me">
+    <h1 class="heading"> <span> About </span> me </h1>
+    <div class="row">
+        <div class="image">
+            <img src="images/me.jpg" alt="My Photo">
+        </div>
+        <div class="content">
+            <h3>Hi, I am Zhamilya!</h3>
+            <br> <br>
+            <p>I am a fourth-year student at KBTU, majoring in IT Management. I spent one semester in France as part of
+                an academic mobility program, which gave me valuable international experience and broadened my
+                perspective. I am a graduate of IQanat High School of Burabay. My main professional interests lie in
+                analytics and IT auditing, and I am eager to develop my expertise further in these areas. Also lately I
+                am really into cybersecurity and writing this project right on the conference called "KazHackStan" by
+                TSARKA.</p>
+            </p>
+            <br> <br>
+            <p>I know a little bit of C, C++, Python and Go!</p>
+            <br> <br>
+            <p>I hope to get 95+ at the end of this course. Please.</p>
+        </div>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>MY_LS</h3>
+            <p>I reimplemented the ls command in C. The project involved reading directories, handling file paths, and
+                displaying file information in different formats. It gave me practical experience with system calls,
+                directory traversal, and string formatting./p>
+        </div>
+        <div class="project-card">
+            <h3>MY_TOP</h3>
+            <p>I created a simplified version of the top command. It required retrieving process information, updating
+                it in real time, and presenting it in a clear layout. Through this, I gained insights into process
+                monitoring, memory usage, and performance statistics.</p>
+        </div>
+        <div class="project-card">
+            <h3>MY_SUDO</h3>
+            <p>I developed a minimal version of sudo, focusing on permission handling and privilege escalation. This
+                project improved my understanding of user authentication, system security concepts, and access control.
+            </p>
+        </div>
+        <div class="project-card">
+            <h3>MY_HUNTER A.K.A DUCK HUNT</h3>
+            <p>A remake of the classic Duck Hunt game written in C. Focused on handling user input, event-driven
+                programming, and collision detection within a continuous game loop./p>
+        </div>
+        <div class="project-card">
+            <h3>MY_RADAR</h3>
+            <p>Developed a radar simulation where radars detect airplanes within a base radius. Airplanes inside the
+                safe zone avoid collisions, while those outside may collide and be destroyed. Practiced real-time object
+                tracking and collision handling logic.</p>
+        </div>
+        <div class="project-card">
+            <h3>SETTING_UP</h3>
+            <p>Built a program that generates a map with obstacles and finds the largest possible square that fits
+                without overlap. Strengthened algorithmic problem-solving skills and 2D array manipulation.</p>
+        </div>
+        <div class="project-card">
+            <h3>ORGANIZED</h3>
+            <p>Created a data management program with functions like add, delete, and sort, implemented using linked
+                lists. Improved knowledge of data structures, dynamic memory allocation, and pointer operations in C.
+            </p>
+        </div>
+        <div class="project-card">
+            <h3>SECURED</h3>
+            <p>Implemented a hashing utility that stores words in a table for retrieval. This project introduced me to
+                hash functions, hash tables, and efficient storage techniques for quick access.</p>
+        </div>
+        <div class="project-card">
+            <h3>MY_PRINTF</h3>
+            <p>I reimplemented the printf function in C. It required parsing format specifiers, managing variable
+                arguments, and producing correctly formatted output. This helped me strengthen my knowledge of variadic
+                functions, memory management, and string manipulation.</p>
+        </div>
+    </div>
+</section>
+
+</html>
