@@ -1,5 +1,9 @@
 :root {
-    --pink: #e84393;
+    --bg: #ffffff;
+    --text: #333333;
+    --heading-bg: #f8bcd9;
+    --card-bg: #f8bcd9;
+    --accent: #e84393;
 }
 
 * {
@@ -243,7 +247,6 @@ header .fa-bars {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    /* расстояние между квадратами */
 }
 
 .project-card {
@@ -275,4 +278,89 @@ header .fa-bars {
     font-size: 1.3rem;
     color: #444;
     margin: 0;
+}
+
+.contact {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f8bcd9;
+    border-radius: 2rem;
+    margin: 40px 0;
+}
+
+.contact h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.contact h1 span {
+    color: var(--pink);
+}
+
+.contact form {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact .inputBox {
+    margin: 15px 0;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: 1.6rem;
+}
+
+.contact .btn {
+    background: var(--pink);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border: none;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.contact .btn:hover {
+    background: #d63072;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.heading {
+    background-color: var(--heading-bg);
+    color: var(--text);
+}
+
+.project-card {
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+.btn {
+    background: var(--accent);
+    color: #fff;
+}
+
+body.dark-mode {
+    --bg: #1e1e1e;
+    --text: #f5f5f5;
+    --heading-bg: #333333;
+    --card-bg: #2c2c2c;
+    --accent: #ff6bcb;
+    /* brighter pink for contrast */
 }
