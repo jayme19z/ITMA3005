@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const body = document.body;
 
-    // Contact form validation
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -19,11 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Dark mode toggle
     themeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
 
-        // optional: change button icon
         if (body.classList.contains("dark-mode")) {
             themeToggle.textContent = "☀️";
         } else {
