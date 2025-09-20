@@ -261,11 +261,9 @@ header .fa-bars {
     border-radius: 15px;
     padding: 20px;
     aspect-ratio: 1/1;
-    /* делает блок квадратным */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* заголовок сверху, описание внизу */
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -344,7 +342,6 @@ header .fa-bars {
     background: #d63072;
 }
 
-/* Dark mode styles */
 body.dark-mode {
     background-color: black;
     color: white;
