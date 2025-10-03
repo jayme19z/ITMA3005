@@ -1,0 +1,33 @@
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  background: linear-gradient(to bottom right, #eef2ff, #ffffff);
+  color: #1e293b;
+}
+
+a {
+  font-weight: 500;
+  color: #4f46e5;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #4338ca;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: transparent;
+  /* градиент из root */
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: #1e293b;
+}
