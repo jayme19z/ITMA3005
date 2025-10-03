@@ -1,3 +1,6 @@
+// const [dislikes, setdislikes] = React.useState(0);
+// <button onClick={() => setdislikes(dislikes + 1)}>💔 {dislikes} Dislikes</button>
+
 import React from 'react';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
@@ -9,10 +12,10 @@ const initialPosts = [
 ];
 
 const PostCard = ({ post }) => {
-  const [likes, setLikes] = React.useState(Math.floor(Math.random() * 50) + 10);
+  const [likes, setLikes] = React.useState(0);
   const [showComments, setShowComments] = React.useState(false);
 
-  const comments = ["Insightful read!", "Loved the section on state management.", "Keep up the great work!"];
+  const comments = ["Insightful read!", "Loved the section on state management.", "Keep up the great work!", "Very good!"];
 
   return (
     <div className="post-card">
@@ -40,7 +43,7 @@ const PostCard = ({ post }) => {
 
 const PostsPage = ({ posts }) => (
   <div className="page">
-    <h1>Latest Blog Posts</h1>
+    <h1>Blog Posts</h1>
     {posts.map(post => <PostCard key={post.id} post={post} />)}
   </div>
 );

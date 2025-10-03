@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background: #f9f9f9;
   color: #333;
 }
@@ -28,14 +28,20 @@ body {
 }
 
 .nav a {
-  margin-left: 16px;
+  margin-left: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   text-decoration: none;
   font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .nav a:hover {
-  text-decoration: underline;
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .main {
@@ -53,6 +59,17 @@ body {
 .page.center {
   text-align: center;
   padding: 50px 0;
+}
+
+.page.center h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.page.center h1:first-child {
+  font-size: 70px;
+  color: black;
 }
 
 .post-card {
