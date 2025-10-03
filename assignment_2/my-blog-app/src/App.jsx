@@ -4,6 +4,7 @@
 import React from 'react';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import ContactForm from "./ContactForm";
 
 const initialPosts = [
   { id: 1, title: "The Future of Single-Page Apps", author: "A. Developer", content: "Exploring how modern frameworks and clever state management make complex single-page applications fast, scalable, and a joy to maintain.", date: "2024-10-01" },
@@ -58,12 +59,7 @@ const HomePage = () => (
 
 const ContactPage = () => (
   <div className="page">
-    <h1>Contact Us</h1>
-    <ul>
-      <li>Email: z_kozhagulova@kbtu.kz</li>
-      <li>Phone: +7 XXX XXX XX XX</li>
-      <li>Address: 59, Tole Bi, Almaty, Kazakhstan</li>
-    </ul>
+    <ContactForm />
   </div>
 );
 
