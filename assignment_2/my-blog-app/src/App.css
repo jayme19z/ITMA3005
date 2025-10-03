@@ -1,44 +1,105 @@
-/* Контейнеры страниц */
-.page-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
 }
 
-/* Навигация */
-nav a {
-  padding: 0.5rem 1rem;
+.header {
+  background: #4f46e5;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav a {
+  margin-left: 16px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page h1 {
+  margin-bottom: 16px;
+  border-bottom: 2px solid #4f46e5;
+  display: inline-block;
+}
+
+.page.center {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.post-card {
+  background: white;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 12px;
+}
+
+.post-actions button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.post-actions button:hover {
+  background: #eee;
+}
+
+.comments {
+  margin-top: 12px;
+  padding: 8px;
+  background: #f3f4f6;
   border-radius: 6px;
 }
 
-nav a:hover {
-  background-color: #e0e7ff;
+.btn {
+  display: inline-block;
+  background: #4f46e5;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Карточки постов */
-.post-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* Кнопки */
-button {
-  font-weight: 600;
-  padding: 0.6em 1.2em;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
+.btn:hover {
+  background: #4338ca;
 }
