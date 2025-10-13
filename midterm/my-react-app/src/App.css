@@ -13,8 +13,16 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Layout container */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1100px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -23,6 +31,64 @@ h1,
 h2,
 h3 {
   margin: 0.5rem 0;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Controls (search + filters) */
+.controls {
+  width: 100%;
+  max-width: 1100px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.controls input,
+.controls select {
+  padding: 0.6rem 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Responsive grid of cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.card-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .event-list {
@@ -130,6 +196,13 @@ form {
   gap: 0.8rem;
 }
 
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
@@ -139,9 +212,41 @@ input[type="tel"] {
   font-size: 1rem;
 }
 
+textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-height: 96px;
+  resize: vertical;
+}
+
 .error-message {
   color: red;
   font-size: 0.9rem;
+}
+
+.error {
+  color: #c62828;
+  font-size: 0.9rem;
+}
+
+.success {
+  color: #1b5e20;
+  font-weight: 600;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
 }
 
 @media (max-width: 600px) {
@@ -149,6 +254,7 @@ input[type="tel"] {
     font-size: 1.2rem;
   }
 
+  .controls,
   .filter-bar {
     flex-direction: column;
     align-items: stretch;
@@ -156,6 +262,10 @@ input[type="tel"] {
 
   button {
     width: 100%;
+  }
+
+  .modal-content {
+    width: calc(100% - 2rem);
   }
 }
 
