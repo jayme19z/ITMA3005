@@ -83,16 +83,21 @@ export default function App() {
         <p className="subtitle">Search, filter and register easily</p>
       </header>
 
-      <div className="controls">
-        <input placeholder="Search..." value={query} onChange={e => setQuery(e.target.value)} />
-        <select value={category} onChange={e => setCategory(e.target.value)}>
+      <div className="controls" role="region" aria-label="Filters and search">
+        <input
+          placeholder="Search events..."
+          aria-label="Search events"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+        <select aria-label="Filter by category" value={category} onChange={e => setCategory(e.target.value)}>
           <option value="all">All</option>
           <option value="workshop">Workshop</option>
           <option value="concert">Concert</option>
           <option value="conference">Conference</option>
           <option value="social">Social</option>
         </select>
-        <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+        <select aria-label="Sort events" value={sortBy} onChange={e => setSortBy(e.target.value)}>
           <option value="date">Date</option>
           <option value="popularity">Popularity</option>
           <option value="price">Price</option>
@@ -118,13 +123,21 @@ export default function App() {
           <div className="modal-content">
             <h3>Register for {selectedEvent.title}</h3>
             <form onSubmit={handleSubmit}>
-              <label>Name<input value={form.name} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'name', value: e.target.value })} /></label>
+              <label htmlFor="name">Name
+                <input id="name" name="name" type="text" autoComplete="name" required value={form.name} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'name', value: e.target.value })} />
+              </label>
               {errors.name && <div className="error">{errors.name}</div>}
-              <label>Email<input value={form.email} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'email', value: e.target.value })} /></label>
+              <label htmlFor="email">Email
+                <input id="email" name="email" type="email" autoComplete="email" required value={form.email} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'email', value: e.target.value })} />
+              </label>
               {errors.email && <div className="error">{errors.email}</div>}
-              <label>Phone<input value={form.phone} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'phone', value: e.target.value })} /></label>
+              <label htmlFor="phone">Phone
+                <input id="phone" name="phone" type="tel" inputMode="tel" placeholder="+1 555 555 5555" required value={form.phone} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'phone', value: e.target.value })} />
+              </label>
               {errors.phone && <div className="error">{errors.phone}</div>}
-              <label>Notes<textarea value={form.notes} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'notes', value: e.target.value })} /></label>
+              <label htmlFor="notes">Notes
+                <textarea id="notes" name="notes" value={form.notes} onChange={e => dispatchForm({ type: 'SET_FIELD', field: 'notes', value: e.target.value })} />
+              </label>
               <div className="form-buttons">
                 <button type="submit">Submit</button>
                 <button type="button" onClick={() => setRegisterOpen(false)}>Cancel</button>
