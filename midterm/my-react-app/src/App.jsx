@@ -2,13 +2,80 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const initialEvents = [
-  { id: 1, image: 'https://placehold.co/600x400/111111/00ff00?text=React+Conf', title: 'React Conference 2025', date: '20-22 Ноября, 2025', location: 'Алматы', price: '15000 KZT' },
-  { id: 2, image: 'https://placehold.co/600x400/111111/00ff00?text=AI+Summit', title: 'AI & Machine Learning Summit', date: '5-6 Декабря, 2025', location: 'Астана', price: '25000 KZT' },
-  { id: 3, image: 'https://placehold.co/600x400/111111/00ff00?text=CyberSec', title: 'CyberSecurity Forum', date: '15 Января, 2026', location: 'Караганда', price: '10000 KZT' },
-  { id: 4, image: 'https://placehold.co/600x400/111111/00ff00?text=DevOps+Day', title: 'DevOps Day', date: '2 Февраля, 2026', location: 'Алматы', price: '12000 KZT' },
-  { id: 5, image: 'https://placehold.co/600x400/111111/00ff00?text=GameDev', title: 'Game Development Meetup', date: '18 Февраля, 2026', location: 'Астана', price: 'Бесплатно' },
-  { id: 6, image: 'https://placehold.co/600x400/111111/00ff00?text=Web3+KZ', title: 'Web3 & Blockchain KZ', date: '25 Марта, 2026', location: 'Алматы', price: '20000 KZT' },
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+    title: 'React Conference 2025',
+    date: '20–22 Ноября, 2025',
+    location: 'Алматы',
+    price: '15000 KZT'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+    title: 'AI & Machine Learning Summit',
+    date: '5–6 Декабря, 2025',
+    location: 'Астана',
+    price: '25000 KZT'
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=600&q=80',
+    title: 'CyberSecurity Forum',
+    date: '15 Января, 2026',
+    location: 'Караганда',
+    price: '10000 KZT'
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=600&q=80',
+    title: 'DevOps Day',
+    date: '2 Февраля, 2026',
+    location: 'Алматы',
+    price: '12000 KZT'
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80',
+    title: 'Game Development Meetup',
+    date: '18 Февраля, 2026',
+    location: 'Астана',
+    price: 'Бесплатно'
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+    title: 'Web3 & Blockchain KZ',
+    date: '25 Марта, 2026',
+    location: 'Алматы',
+    price: '20000 KZT'
+  },
+  {
+    id: 7,
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+    title: 'UX/UI Design Marathon',
+    date: '10 Апреля, 2026',
+    location: 'Шымкент',
+    price: '18000 KZT'
+  },
+  {
+    id: 8,
+    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80',
+    title: 'Startup Weekend Kazakhstan',
+    date: '22 Мая, 2026',
+    location: 'Астана',
+    price: 'Бесплатно'
+  },
+  {
+    id: 9,
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
+    title: 'Cloud Computing Expo',
+    date: '5 Июня, 2026',
+    location: 'Алматы',
+    price: '22000 KZT'
+  },
 ];
+
 
 const Header = ({ setPage }) => (
   <header className="header">
@@ -162,7 +229,6 @@ const NotFoundPage = () => (
     <p>Страница не найдена. Похоже, вы зашли куда-то не туда.</p>
   </div>
 );
-
 
 function App() {
   const [page, setPage] = useState('home');
