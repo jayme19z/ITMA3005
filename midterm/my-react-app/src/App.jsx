@@ -1,159 +1,193 @@
-import React, { useMemo, useReducer, useState, useEffect } from "react";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
-const MOCK_EVENTS = [
-  { id: "e1", title: "Tech Conference 2025", date: "2025-11-10", location: "Astana", category: "conference", description: "A deep dive into the future of AI and cloud computing." },
-  { id: "e2", title: "UI/UX Design Workshop", date: "2025-12-01", location: "Almaty", category: "workshop", description: "Learn user experience design with hands-on practice." },
-  { id: "e3", title: "Music Festival", date: "2025-12-15", location: "Paris", category: "concert", description: "An unforgettable night of live performances." }
+const initialEvents = [
+  { id: 1, image: 'https://placehold.co/600x400/111111/00ff00?text=React+Conf', title: 'React Conference 2025', date: '20-22 Ноября, 2025', location: 'Алматы', price: '15000 KZT' },
+  { id: 2, image: 'https://placehold.co/600x400/111111/00ff00?text=AI+Summit', title: 'AI & Machine Learning Summit', date: '5-6 Декабря, 2025', location: 'Астана', price: '25000 KZT' },
+  { id: 3, image: 'https://placehold.co/600x400/111111/00ff00?text=CyberSec', title: 'CyberSecurity Forum', date: '15 Января, 2026', location: 'Караганда', price: '10000 KZT' },
+  { id: 4, image: 'https://placehold.co/600x400/111111/00ff00?text=DevOps+Day', title: 'DevOps Day', date: '2 Февраля, 2026', location: 'Алматы', price: '12000 KZT' },
+  { id: 5, image: 'https://placehold.co/600x400/111111/00ff00?text=GameDev', title: 'Game Development Meetup', date: '18 Февраля, 2026', location: 'Астана', price: 'Бесплатно' },
+  { id: 6, image: 'https://placehold.co/600x400/111111/00ff00?text=Web3+KZ', title: 'Web3 & Blockchain KZ', date: '25 Марта, 2026', location: 'Алматы', price: '20000 KZT' },
 ];
 
-const formatDate = (iso) => new Date(iso).toLocaleDateString();
+const Header = ({ setPage }) => (
+  <header className="header">
+    <div className="logo-container" onClick={() => setPage('home')}>
+      <i className="fas fa-code logo"></i>
+      <span className="site-title">IT-Events Portal</span>
+    </div>
+    <nav className="nav-icons">
+      <i className="fas fa-home nav-icon" title="Главная" onClick={() => setPage('home')}></i>
+      <i className="fas fa-calendar-alt nav-icon" title="Мероприятия" onClick={() => setPage('events')}></i>
+      <i className="fas fa-user nav-icon" title="Личный кабинет" onClick={() => setPage('profile')}></i>
+    </nav>
+  </header>
+);
 
-function formReducer(state, action) {
-  switch (action.type) {
-    case "SET_FIELD":
-      return { ...state, [action.field]: action.value };
-    case "RESET":
-      return action.initial;
-    default:
-      return state;
-  }
-}
+const HomePage = ({ setPage }) => (
+  <div className="home-page container">
+    <h1 className="welcome-message">Добро пожаловать на IT-Events Portal</h1>
+    <p style={{ fontSize: '1.2rem', marginBottom: '30px' }}>Ваш гид в мире технологических событий</p>
+    <button className="cta-button" onClick={() => setPage('events')}>
+      Найти мероприятие
+    </button>
+  </div>
+);
 
-export default function App() {
-  const [events] = useState(MOCK_EVENTS);
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all");
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [registrations, setRegistrations] = useState(
-    () => JSON.parse(localStorage.getItem("registrations_v1") || "[]")
-  );
+const EventCard = ({ event, onRegister }) => (
+  <div className="event-card">
+    <img src={event.image} alt={event.title} className="event-image" />
+    <div className="event-info">
+      <h3 className="event-title">{event.title}</h3>
+      <div className="event-details">
+        <p><i className="fas fa-calendar-alt"></i> {event.date}</p>
+        <p><i className="fas fa-map-marker-alt"></i> {event.location}</p>
+        <p><i className="fas fa-tag"></i> {event.price}</p>
+      </div>
+      <button className="register-button" onClick={() => onRegister(event.title)}>Зарегистрироваться</button>
+    </div>
+  </div>
+);
 
-  const [form, dispatchForm] = useReducer(formReducer, {
-    name: "",
-    email: "",
-    phone: ""
-  });
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem("registrations_v1", JSON.stringify(registrations));
-  }, [registrations]);
-
-  const filtered = useMemo(() => {
-    return events.filter(
-      (e) =>
-        (category === "all" || e.category === category) &&
-        e.title.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [events, query, category]);
-
-  const validate = () => {
-    const errs = {};
-    if (!form.name.trim()) errs.name = "Name is required";
-    if (!form.email.includes("@")) errs.email = "Invalid email";
-    if (!form.phone.match(/^[0-9\\-\\+]{9,15}$/)) errs.phone = "Invalid phone";
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
+const RegistrationModal = ({ eventName, onClose }) => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      const reg = { ...form, eventTitle: selectedEvent.title, createdAt: new Date().toISOString() };
-      setRegistrations((prev) => [reg, ...prev]);
-      setSuccess(`Successfully registered for ${selectedEvent.title}!`);
-      dispatchForm({ type: "RESET", initial: { name: "", email: "", phone: "" } });
-      setTimeout(() => setSelectedEvent(null), 1200);
+    if (!name.trim() || !phone.trim() || !email.trim()) {
+      alert('Пожалуйста, заполните все поля!');
+      return;
+    }
+    alert(`Вы успешно зарегистрировались на "${eventName}"!`);
+    onClose();
+  };
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <span className="close-button" onClick={onClose}>&times;</span>
+        <h2>Регистрация на {eventName}</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Имя:</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Номер телефона:</label>
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <button type="submit" className="modal-submit">Отправить</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const EventsPage = () => {
+  const [events, setEvents] = useState(initialEvents);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState('');
+
+  useEffect(() => {
+    let filteredEvents = initialEvents;
+    if (searchQuery) {
+      filteredEvents = filteredEvents.filter(event =>
+        event.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    if (selectedCity) {
+      filteredEvents = filteredEvents.filter(event => event.location === selectedCity);
+    }
+    setEvents(filteredEvents);
+  }, [searchQuery, selectedCity]);
+
+  const handleRegisterClick = (eventName) => {
+    setCurrentEvent(eventName);
+    setIsModalOpen(true);
+  };
+
+  const uniqueCities = [...new Set(initialEvents.map(event => event.location))];
+
+  return (
+    <div className="events-page container">
+      <div className="filters">
+        <input
+          type="text"
+          placeholder="Поиск по названию..."
+          className="search-bar"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <select className="city-filter" value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
+          <option value="">Все города</option>
+          {uniqueCities.map(city => <option key={city} value={city}>{city}</option>)}
+        </select>
+      </div>
+      <div className="events-grid">
+        {events.length > 0 ? (
+          events.map(event => (
+            <EventCard key={event.id} event={event} onRegister={handleRegisterClick} />
+          ))
+        ) : (
+          <p>Мероприятия не найдены.</p>
+        )}
+      </div>
+      {isModalOpen && <RegistrationModal eventName={currentEvent} onClose={() => setIsModalOpen(false)} />}
+    </div>
+  );
+};
+
+const UserProfile = () => (
+  <div className="centered-page container">
+    <h1>Личный кабинет</h1>
+    <p>Войдите или создайте аккаунт, чтобы управлять вашими регистрациями.</p>
+    <div className="auth-buttons">
+      <button className="auth-button login-btn">Войти</button>
+      <button className="auth-button register-btn">Зарегистрироваться</button>
+    </div>
+  </div>
+);
+
+const NotFoundPage = () => (
+  <div className="centered-page container">
+    <h1>404</h1>
+    <p>Страница не найдена. Похоже, вы зашли куда-то не туда.</p>
+  </div>
+);
+
+
+function App() {
+  const [page, setPage] = useState('home');
+
+  const renderPage = () => {
+    switch (page) {
+      case 'home':
+        return <HomePage setPage={setPage} />;
+      case 'events':
+        return <EventsPage />;
+      case 'profile':
+        return <UserProfile />;
+      default:
+        return <NotFoundPage />;
     }
   };
 
   return (
     <>
-      <header className="header">
-        <h1>Event Registration</h1>
-      </header>
-
-      <main className="content">
-        <div className="filter-bar">
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="all">All Categories</option>
-            <option value="conference">Conference</option>
-            <option value="workshop">Workshop</option>
-            <option value="concert">Concert</option>
-          </select>
-        </div>
-
-        <div className="event-list">
-          {filtered.map((event) => (
-            <div key={event.id} className="event-card">
-              <h3>{event.title}</h3>
-              <p className="event-details">
-                📅 {formatDate(event.date)} | 📍 {event.location}
-              </p>
-              <p>{event.description}</p>
-              <div className="event-actions">
-                <button onClick={() => setSelectedEvent(event)}>Register Now</button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {selectedEvent && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Register for {selectedEvent.title}</h2>
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  value={form.name}
-                  onChange={(e) =>
-                    dispatchForm({ type: "SET_FIELD", field: "name", value: e.target.value })
-                  }
-                />
-                {errors.name && <p className="error-message">{errors.name}</p>}
-
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  value={form.email}
-                  onChange={(e) =>
-                    dispatchForm({ type: "SET_FIELD", field: "email", value: e.target.value })
-                  }
-                />
-                {errors.email && <p className="error-message">{errors.email}</p>}
-
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  value={form.phone}
-                  onChange={(e) =>
-                    dispatchForm({ type: "SET_FIELD", field: "phone", value: e.target.value })
-                  }
-                />
-                {errors.phone && <p className="error-message">{errors.phone}</p>}
-
-                <div className="buttons">
-                  <button type="submit">Submit</button>
-                  <button type="button" className="close-btn" onClick={() => setSelectedEvent(null)}>
-                    Cancel
-                  </button>
-                </div>
-
-                {success && <p className="success">{success}</p>}
-              </form>
-            </div>
-          </div>
-        )}
+      <Header setPage={setPage} />
+      <main>
+        {renderPage()}
       </main>
     </>
   );
 }
+
+export default App;
