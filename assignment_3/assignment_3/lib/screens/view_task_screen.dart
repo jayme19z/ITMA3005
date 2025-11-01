@@ -35,6 +35,7 @@ class _ViewTaskScreenState extends State<ViewTaskScreen> {
         title: _titleController.text.trim(),
         assignee: _assigneeController.text.trim(),
         priority: _priority,
+        description: widget.task.description,
       );
       Navigator.of(context).pop(updated);
     } else {
@@ -94,7 +95,13 @@ class _ViewTaskScreenState extends State<ViewTaskScreen> {
               if (!_isEditing)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [const Text('Tap edit to modify this task.')],
+                  children: [
+                    const Text('Tap edit to modify this task.'),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Description: ${widget.task.description.isEmpty ? 'No description provided' : widget.task.description}',
+                    ),
+                  ],
                 ),
             ],
           ),

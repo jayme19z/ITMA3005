@@ -10,6 +10,7 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _assigneeController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   String _selectedPriority = 'Medium';
 
   void _save() {
@@ -24,6 +25,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       'title': _titleController.text.trim(),
       'assignee': _assigneeController.text.trim(),
       'priority': _selectedPriority,
+      'description': _descriptionController.text.trim(),
     });
   }
 
@@ -31,6 +33,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   void dispose() {
     _titleController.dispose();
     _assigneeController.dispose();
+    _descriptionController.dispose();
     super.dispose();
   }
 
@@ -62,6 +65,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   DropdownMenuItem(value: 'High', child: Text('High')),
                 ],
                 onChanged: (v) => setState(() => _selectedPriority = v!),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+                maxLines: 3,
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(

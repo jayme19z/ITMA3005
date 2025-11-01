@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: newTask['title'],
           assignee: newTask['assignee'],
           priority: newTask['priority'],
+          description: newTask['description'],
         ),
       );
     });
